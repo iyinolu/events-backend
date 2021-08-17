@@ -2,7 +2,6 @@ from rest_framework import serializers
 from api.models import Events
 
 class EventsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Events
-        fields = ['id', 'owner', 'title', 'content', 'status', 'color']
+        fields = "__all__"

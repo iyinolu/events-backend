@@ -1,21 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import User
+from user.models import User
 
 class Events(models.Model):
-    COLOR_CHOICES = (
-        ('Red', 'RED'),
-        ('Green', 'GREEN'),
-        ('Blue', 'BLUE')
+
+    TAG_CHOICES = (
+        ('Important', 'IMPORTANT'),
+        ('Birthday', 'BIRTHDAY'),
+        ('Meeting', 'MEETING'),
+        ('Leisure', 'LEISURE'),
+        ('Hangout', 'HANGOUT')
     )
 
-    STATUS_CHOICES = (
-        ('Active', 'ACTIVE'),
-        ('Completed', 'COMPLETED'),
-    )
-
+    date_created = models.DateTimeField(auto_now_add=True)
+    event_date = models.DateTimeField(blank=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, blank=False)
     content = models.CharField(max_length=500)
-    status = models.CharField(choices=STATUS_CHOICES, max_length=10)
-    color = models.CharField(choices=COLOR_CHOICES, max_length=8)
+    tag = models.CharField(choices=TAG_CHOICES, max_length=50)
 

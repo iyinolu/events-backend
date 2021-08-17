@@ -1,7 +1,11 @@
 from django.urls import path
-from api.views import AddTodos, ListOfTodos 
+from django.urls.conf import include
+from rest_framework.routers import DefaultRouter
+from api import views
+
+router = DefaultRouter()
+router.register(r'events', views.EventsViewSet)
 
 urlpatterns = [
-    path('todo-list/', ListOfTodos.as_view()),
-    path('add-todo/', AddTodos.as_view())
+    path('', include(router.urls))
 ]
