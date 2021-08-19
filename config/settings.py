@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'middleware.AuthenticationMiddlewareJWT',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -83,6 +84,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+CORS_ALLOW_CREDENTIALS = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
