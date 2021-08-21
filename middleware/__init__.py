@@ -17,7 +17,7 @@ def get_user_jwt(request):
     return user
 
 class AuthenticationMiddlewareJWT(MiddlewareMixin):
-
+    """Appends User object to every authenticated request"""
     def process_request(self, request):
         assert hasattr(request, 'session')
         request.user = SimpleLazyObject(lambda: get_user_jwt(request))
