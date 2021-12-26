@@ -15,6 +15,7 @@ class EventsViewSet(viewsets.ModelViewSet):
     serializer_class = EventsSerializer
     permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [JSONRenderer]
+    # TODO: Use filter backends
 
     def create(self, request, *args, **kwargs):
         """create method that adds request object when perform create is called"""

@@ -5,4 +5,5 @@ from api.models import Events
 class EventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Events
-        fields = "__all__"    
+        fields = ["event_date", "title", "content", "tag"]    
+    
