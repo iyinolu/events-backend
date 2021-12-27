@@ -10,7 +10,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             'id': user.id,
             'is_active': user.is_active,
             'email': user.email,
-            'username': user.username
+            'username': user.username,
+            'firstname': user.firstname,
+            'lastname': user.lastname,
         }
 
         return token

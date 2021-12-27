@@ -8,7 +8,7 @@ class UserManager(BaseUserManager):
     Manages the creation of new users
     """
 
-    def create_user(self, username, email, password):
+    def create_user(self, username, email, password, **kwargs):
         """Create and return a user with a username, email and password"""
         if username is None:
             raise TypeError("User must have a username.")
@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
         if not password:
             raise TypeError("User has not entered a password")
 
-        user = self.model(username=username, email=self.normalize_email(email))
+        user = self.model(username=username, email=self.normalize_email(email), **kwargs)
         user.set_password(password)
         user.save()
 
@@ -33,6 +33,8 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
+    firstname = models.CharField(max_length=50, default="N/A",)
+    lastname = models.CharField(max_length=50, default="N/A")
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True)
     is_active = models.BooleanField(default=True)
@@ -41,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['firstname', 'lastname']
 
     # Access the user manager class with the "objects" variable
     objects = UserManager()
