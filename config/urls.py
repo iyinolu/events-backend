@@ -8,6 +8,7 @@ from rest_framework_simplejwt.views import (
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from config.utils import CustomTokenObtainPairView 
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -32,6 +33,6 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('api/', include('user.urls')),
     # Authentication Endpoints
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

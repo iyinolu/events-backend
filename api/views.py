@@ -15,6 +15,7 @@ class EventsViewSet(viewsets.ModelViewSet):
     serializer_class = EventsSerializer
     permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [JSONRenderer]
+    # TODO: Use filter backends
 
     def create(self, request, *args, **kwargs):
         """create method that adds request object when perform create is called"""
@@ -30,7 +31,9 @@ class EventsViewSet(viewsets.ModelViewSet):
         given user by filtering against `eventdate` parameter in 
         Url.
         """
-        queryset = Events.objects.all()
+        # Filter queryset based on a user initiating the request
+        queryset = Events.objects.all().filter(owner=self.request.user.id)
+        
         event_date = self.request.query_params.get("eventdate")
         if event_date is not None:
             queryset = queryset.filter(event_date=event_date)
