@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -23,7 +24,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, username, email, password):
+    def create_superuser(self, username, email, password, **kwargs):
         """Create User with admin permissions"""
         user = self.create_user(username, email, password)
         user.is_superuser = True
@@ -43,7 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['firstname', 'lastname']
+    REQUIRED_FIELDS = ['firstname', 'lastname', 'username'] 
 
     # Access the user manager class with the "objects" variable
     objects = UserManager()
