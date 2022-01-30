@@ -32,7 +32,11 @@ class EventsViewSet(viewsets.ModelViewSet):
         Url.
         """
         # Filter queryset based on a user initiating the request and admin's default categories
-        queryset = EventCategory.objects.all().filter(owner__in=[self.request.user.id, 8])
+        queryset = Events.objects.all().filter(owner=self.request.user.id)
+        
+        event_date = self.request.query_params.get("eventdate")
+        if event_date is not None:
+            queryset = queryset.filter(event_date=event_date)
     
         return queryset
 
@@ -55,11 +59,8 @@ class EventCategoryViewset(viewsets.ModelViewSet):
     
     def get_queryset(self):    
         # Filter queryset based on a user initiating the request
-        queryset = Events.objects.all().filter(owner=self.request.user.id)
+        queryset = EventCategory.objects.all().filter(owner__in=[self.request.user.id, 8])
         
-        event_date = self.request.query_params.get("eventdate")
-        if event_date is not None:
-            queryset = queryset.filter(event_date=event_date)
         return queryset
 
     def perform_create(self, request, serializer):
