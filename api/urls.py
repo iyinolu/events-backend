@@ -5,6 +5,7 @@ from api import views
 
 router = DefaultRouter()
 router.register(r'events', views.EventsViewSet)
+router.register(r'events/category', views.EventCategoryViewset)
 
 urlpatterns = [
     path('', include(router.urls))
