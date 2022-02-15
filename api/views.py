@@ -34,7 +34,8 @@ class EventsViewSet(viewsets.ModelViewSet):
         # Filter queryset based on a user initiating the request and admin's default categories
         queryset = Events.objects.all().filter(owner=self.request.user.id)
         
-        event_date = self.request.query_params.get("eventdate")
+        event_date = self.request.query_params.get("eventDate")
+
         if event_date is not None:
             queryset = queryset.filter(event_date=event_date)
     
