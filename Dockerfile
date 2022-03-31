@@ -15,6 +15,7 @@ RUN apk update \
     && apk add postgresql-dev \
     && pip install psycopg2
 
+# configure tkinter for python
 RUN apk add python3-tkinter
 
 # install dependencies
