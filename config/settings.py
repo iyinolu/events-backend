@@ -99,7 +99,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eventdb',
         'USER': 'postgres',
-        'PASSWORD': 'Osinowo$$3947',
+        'PASSWORD': os.environ.get('PASSWORD', default=""),
         'HOST': 'localhost',
         'PORT': '5432'
     }
