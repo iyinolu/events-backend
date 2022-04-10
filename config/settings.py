@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-    "https://eventsdirfrontend.herokuapp.com/"
+    "https://eventsdirfrontend.herokuapp.com"
 )
 CORS_ALLOW_CREDENTIALS = True
 
